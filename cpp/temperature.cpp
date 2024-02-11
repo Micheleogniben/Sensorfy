@@ -16,9 +16,10 @@ const void Temperature::generateData(unsigned short n) {
     float measure = 0.0, 
         hour = 0.0;
 
-    for (int i = 0; i < n; i++) {
-        // Calcolo della temperatura per l'i-esima misura usando una distribuzione normale
+    for (unsigned short i = 0; i < n; i++) {
+        // calcolo l'ora in cui si trova l'i-esima misurazione
         hour = 24.0f / n * i;
+        // Calcolo della temperatura per l'i-esima misura usando una distribuzione normale
         measure = minVal + (maxVal - minVal) *
                             std::exp(-0.5f * std::pow((hour - hourPick) / standardDev, 2));
 

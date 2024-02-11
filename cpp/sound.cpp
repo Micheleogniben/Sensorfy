@@ -3,7 +3,7 @@
 
 Sound::Sound(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
-const void Sound::generateData(unsigned short) {
+const void Sound::generateData(unsigned short n) {
     // Definisci un generatore di numeri casuali
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -13,10 +13,12 @@ const void Sound::generateData(unsigned short) {
     std::normal_distribution<> morning(50, 10); // Rumore al mattino
     std::normal_distribution<> afternoon(70, 15); // Rumore al pomeriggio
     std::normal_distribution<> evening(60, 10); // Rumore alla sera
-    int measure = 0;
+    unsigned int measure = 0;
+    float hour = 0;
 
-    for (int hour = 0; hour < 24; ++hour) {
-        int measure;
+    for (unsigned short i = 0; i < n; ++i) {
+        // calcolo l'ora in cui si trova l'i-esima misurazione
+        hour = 24.0f / n * i;
 
         // la distribuzione del rumore varia in base all'ora del giorno
         if (hour >= 6 && hour < 12) {
@@ -36,7 +38,7 @@ const void Sound::generateData(unsigned short) {
         }
 
         // check per verificare che i db siano tra 0 e 100
-        this->measurements.push_back(std::max(0, std::min(measure, 100)));
+        this->measurements.push_back(measure);
     }
 }
 
