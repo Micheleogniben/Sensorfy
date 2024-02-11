@@ -3,7 +3,7 @@
 
 #include "sensor.h"
 #include <vector>
-#include <map>
+#include <tuple>
 
 class Wind : public Sensor{
     public:
@@ -11,7 +11,7 @@ class Wind : public Sensor{
         const void generateData(unsigned short) override;
         const void showChart() const override;
     private:
-        std::vector<std::map<float, unsigned short>> measurements;
+        std::vector<std::tuple<float, unsigned short>> measurements;
 };
 
 #endif
