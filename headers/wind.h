@@ -1,11 +1,11 @@
-#ifndef TEMPERATURE_H
-#define TEMPERATURE_H
+#ifndef WIND_H
+#define WIND_H
 
 #include "sensor.h"
 
-class Temperature : public Sensor{
+class Wind : public Sensor{
     public:
-        Temperature(std::string, std::string, std::string);
+        Wind(std::string, std::string, std::string);
         const void generateData(unsigned short) const override;
         const void showChart() const override;
     private:
