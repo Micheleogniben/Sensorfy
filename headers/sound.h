@@ -1,12 +1,13 @@
-#ifndef TEMPERATURE_H
-#define TEMPERATURE_H
+#ifndef SOUND_H
+#define SOUND_H
 
 #include "sensor.h"
 #include <vector>
+#include <map>
 
-class Temperature : public Sensor{
+class Sound : public Sensor{
     public:
-        Temperature(std::string, std::string, std::string);
+        Sound(std::string, std::string, std::string);
         const void generateData(unsigned short) override;
         const void showChart() const override;
     private:
