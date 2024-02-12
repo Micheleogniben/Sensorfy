@@ -3,7 +3,7 @@
 
 Temperature::Temperature(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
-const void Temperature::generateData(unsigned short n) {
+void Temperature::generateData(unsigned short n) {
     // Generatore random di tipo Mersenne Twister necessario alla creazione di una curva gaussiana
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -31,7 +31,7 @@ const void Temperature::generateData(unsigned short n) {
     }
 }
 
-const void Temperature::showChart() const {
+void Temperature::showChart() const {
     // for (int i = 0; i < measurements.size(); ++i)
     //     std::cout << "ora" << 24.0f / measurements.size() * i << ": " << measurements[i];
 }

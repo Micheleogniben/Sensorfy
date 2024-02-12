@@ -3,7 +3,7 @@
 
 Sound::Sound(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
-const void Sound::generateData(unsigned short n) {
+void Sound::generateData(unsigned short n) {
     // Definisci un generatore di numeri casuali
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -42,6 +42,6 @@ const void Sound::generateData(unsigned short n) {
     }
 }
 
-const void Sound::showChart() const {
+void Sound::showChart() const {
 
 }

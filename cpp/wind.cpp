@@ -3,7 +3,7 @@
 
 Wind::Wind(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
-const void Wind::generateData(unsigned short n) {
+void Wind::generateData(unsigned short n) {
     // Generatore random di tipo Mersenne Twister necessario alla creazione di una curva gaussiana
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -24,6 +24,6 @@ const void Wind::generateData(unsigned short n) {
     //TODO: magari aggiungere anche un po' di rumore ai dati, quindi non la media perfetta, ma sporcata
 }
 
-const void Wind::showChart() const {
+void Wind::showChart() const {
 
 }
