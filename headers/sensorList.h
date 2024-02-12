@@ -10,17 +10,16 @@ public:
     ~SensorList();
 
     Sensor* getFront() const;
-    Sensor* findByName(std::string) const;
+    Sensor* findByName(std::string&) const;
 
     void pop();
-    bool deleteByName(std::string);
+    bool deleteByName(std::string&);
     bool addSensor(Sensor*);
 
     bool isEmpty() const;
-    bool isNameTaken(std::string);
+    bool isNameTaken(std::string&);
 
-    int getSize() const;
-    unsigned short getCurrentCapacity() const;
+    unsigned int getSize() const;
 
 
     class Iterator;
@@ -37,6 +36,7 @@ private:
     };
 
     Node *head;
+    unsigned int size;
 };
 
 
