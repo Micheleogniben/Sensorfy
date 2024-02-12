@@ -44,6 +44,9 @@ void Sound::generateData(unsigned short n) {
     }
 }
 
+#include <iostream>
 void Sound::showChart() const {
-
+    for  (int i = 0; i < measurements.size(); i++) {
+        std::cout<<"ora "<<24 / measurements.size() * i<<": "<<measurements[i]<<std::endl;
+    }
 }

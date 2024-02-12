@@ -26,6 +26,9 @@ void Wind::generateData(unsigned short n) {
     //TODO: magari aggiungere anche un po' di rumore ai dati, quindi non la media perfetta, ma sporcata
 }
 
+#include <iostream>
 void Wind::showChart() const {
-
+    for  (int i = 0; i < measurements.size(); i++) {
+        std::cout<<"ora "<<24 / measurements.size() * i<<": "<<std::get<0>(measurements[i])<<std::endl;
+    }
 }
