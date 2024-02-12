@@ -10,14 +10,14 @@ public:
     ~SensorList();
 
     Sensor* getFront() const;
-    Sensor* findByName(std::string&) const;
+    Sensor* findByName(const std::string&) const;
 
     void pop();
     bool deleteByName(std::string&);
     bool addSensor(Sensor*);
 
     bool isEmpty() const;
-    bool isNameTaken(std::string&);
+    bool isNameTaken(const std::string&) const;
 
     unsigned int getSize() const;
 
@@ -44,14 +44,10 @@ class SensorList::Iterator {
 public:
     Iterator(Node* start);
 
-    Sensor* operator->() const;
-    Sensor& operator*() const;
-
     bool operator==(const Iterator& other) const;
     bool operator!=(const Iterator& other) const;
     Iterator& operator++();
-    Iterator& operator--();
-    void operator++(int);
+    Sensor* operator*();
 
 private:
     Node* current;
