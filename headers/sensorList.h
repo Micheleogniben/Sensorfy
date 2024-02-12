@@ -44,6 +44,9 @@ class SensorList::Iterator {
 public:
     Iterator(Node* start);
 
+    Sensor* operator->() const;
+    Sensor& operator*() const;
+
     bool operator==(const Iterator& other) const;
     bool operator!=(const Iterator& other) const;
     Iterator& operator++();

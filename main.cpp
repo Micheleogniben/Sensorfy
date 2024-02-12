@@ -5,23 +5,23 @@
 #include "temperature.h"
 #include "wind.h"
 #include "sound.h"
+#include "sensorList.h"
 
 int main(int argc, char *argv[])
 {
     // QApplication a(argc, argv);
     // MainWindow w;
     // w.show();
-    Sensor* s1 = new Temperature("", "", "");
-    Sensor* s2 = new Wind("", "", "");
-    Sensor* s3 = new Sound("", "", "");
+    SensorList* sensors = new SensorList();
 
-    s1->generateData(48);
-    s2->generateData(48);
-    s3->generateData(48);
+    sensors->addSensor(new Temperature("", "", ""));
+    sensors->addSensor(new Wind("", "", ""));
+    sensors->addSensor(new Sound("", "", ""));
 
-    s1->showChart();
-    s2->showChart();
-    s3->showChart();
+    for (auto it = sensors->begin() ; it != sensors->end() ; ++it) {
+        (*it).generateData(12);
+        (*it).showChart();
+    }
 
     // QApplication a(argc, argv);
     // MainWindow w;

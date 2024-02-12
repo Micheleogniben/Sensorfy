@@ -31,7 +31,10 @@ void Temperature::generateData(unsigned short n) {
     }
 }
 
+
+#include <iostream>
 void Temperature::showChart() const {
-    // for (int i = 0; i < measurements.size(); ++i)
-    //     std::cout << "ora" << 24.0f / measurements.size() * i << ": " << measurements[i];
+    for  (int i = 0; i < measurements.size(); i++) {
+        std::cout<<"ora "<<24 / measurements.size() * i<<": "<<measurements[i]<<std::endl;
+    }
 }
