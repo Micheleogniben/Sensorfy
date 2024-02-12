@@ -7,6 +7,7 @@
 class Temperature : public Sensor{
     public:
         Temperature(std::string, std::string, std::string);
+        Temperature(Temperature&);
         void generateData(unsigned short) override;
         void showChart() const override;
     private:

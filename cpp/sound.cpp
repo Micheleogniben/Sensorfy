@@ -3,6 +3,8 @@
 
 Sound::Sound(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
+Sound::Sound(Sound& sensor) : Sensor(sensor), measurements(sensor.measurements) { };
+
 void Sound::generateData(unsigned short n) {
     // Definisci un generatore di numeri casuali
     std::random_device rd;

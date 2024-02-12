@@ -3,6 +3,8 @@
 
 Temperature::Temperature(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
+Temperature::Temperature(Temperature& sensor) : Sensor(sensor), measurements(sensor.measurements) { };
+
 void Temperature::generateData(unsigned short n) {
     // Generatore random di tipo Mersenne Twister necessario alla creazione di una curva gaussiana
     std::random_device rd;
