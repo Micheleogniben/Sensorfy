@@ -8,6 +8,7 @@
 class Wind : public Sensor{
     public:
         Wind(std::string, std::string, std::string);
+        Wind(Wind&);
         void generateData(unsigned short) override;
         void showChart() const override;
     private:
