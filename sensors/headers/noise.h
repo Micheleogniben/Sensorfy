@@ -1,14 +1,14 @@
-#ifndef SOUND_H
-#define SOUND_H
+#ifndef NOISE_H
+#define NOISE_H
 
 #include "sensor.h"
 #include <vector>
 #include <map>
 
-class Sound : public Sensor{
+class Noise : public Sensor{
     public:
-        Sound(std::string, std::string, std::string);
-        Sound(Sound&);
+        Noise(std::string, std::string, std::string);
+        Noise(Noise&);
         void generateData(unsigned short) override;
         void showChart() const override;
     private:
