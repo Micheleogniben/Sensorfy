@@ -1,6 +1,6 @@
 #include "sensorList.h"
 #include "temperature.h"
-#include "sound.h"
+#include "noise.h"
 #include "wind.h"
 
 SensorList::SensorList() : head(nullptr), size(0) {}
@@ -11,8 +11,8 @@ SensorList::SensorList(const SensorList& other) : head(nullptr), size(0) {
     while (current != nullptr) {
         Sensor* copiedSensor = nullptr;
 
-        if (dynamic_cast<Sound*>(current->data))
-            copiedSensor = new Sound(*(dynamic_cast<Sound*>(current->data)));
+        if (dynamic_cast<Noise*>(current->data))
+            copiedSensor = new Noise(*(dynamic_cast<Noise*>(current->data)));
         else if (dynamic_cast<Wind*>(current->data))
             copiedSensor = new Wind(*(dynamic_cast<Wind*>(current->data)));
         else if (dynamic_cast<Temperature*>(current->data))

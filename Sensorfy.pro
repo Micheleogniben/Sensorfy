@@ -22,13 +22,13 @@ INCLUDEPATH += $$PWD/headers
 HEADERS += \
     headers/sensor.h \
     headers/sensorList.h \
-    headers/sound.h \
+    headers/noise.h \
     headers/temperature.h \
     headers/wind.h \
 
 SOURCES += \
     cpp/sensor.cpp \
     cpp/sensorList.cpp \
-    cpp/sound.cpp \
+    cpp/noise.cpp \
     cpp/temperature.cpp \
     cpp/wind.cpp \
