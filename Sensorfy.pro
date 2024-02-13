@@ -13,16 +13,22 @@ INCLUDEPATH += .
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x060000 # disables all APIs deprecated in Qt 6.0.0 and earlier
 
-# Input
-HEADERS += sensorList.h \
-           sensors/headers/sensor.h \
-           sensors/headers/sound.h \
-           sensors/headers/temperature.h \
-           sensors/headers/wind.h
-FORMS += mainwindow.ui
-SOURCES += main.cpp \
-           sensorList.cpp \
-           sensors/cpp/sensor.cpp \
-           sensors/cpp/sound.cpp \
-           sensors/cpp/temperature.cpp \
-           sensors/cpp/wind.cpp
+CONFIG += c++17
+
+SOURCES += main.cpp
+
+# Include header and source files from the others directory
+INCLUDEPATH += $$PWD/headers
+HEADERS += \
+    headers/sensor.h \
+    headers/sensorList.h \
+    headers/sound.h \
+    headers/temperature.h \
+    headers/wind.h \
+
+SOURCES += \
+    cpp/sensor.cpp \
+    cpp/sensorList.cpp \
+    cpp/sound.cpp \
+    cpp/temperature.cpp \
+    cpp/wind.cpp \
