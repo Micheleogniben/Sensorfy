@@ -56,4 +56,4 @@ compile_commands.json
 *.DS_Store
 *.vscode
 *.app*
-CMakeLists.txt*
+.qt
