@@ -54,3 +54,6 @@ compile_commands.json
 *_qmlcache.qrc
 
 *.DS_Store
+*.vscode
+*.app*
+.qt
