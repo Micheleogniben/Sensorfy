@@ -1,5 +1,5 @@
-#ifndef SOUND_H
-#define SOUND_H
+#ifndef NOISE_H
+#define NOISE_H
 
 #include "sensor.h"
 #include <vector>
