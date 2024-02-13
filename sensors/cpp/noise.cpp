@@ -1,11 +1,11 @@
-#include "sound.h"
+#include "noise.h"
 #include <random>
 
-Sound::Sound(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
+Noise::Noise(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
 
-Sound::Sound(Sound& sensor) : Sensor(sensor), measurements(sensor.measurements) { };
+Noise::Noise(Noise& sensor) : Sensor(sensor), measurements(sensor.measurements) { };
 
-void Sound::generateData(unsigned short n) {
+void Noise::generateData(unsigned short n) {
     // Definisci un generatore di numeri casuali
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -45,7 +45,7 @@ void Sound::generateData(unsigned short n) {
 }
 
 #include <iostream>
-void Sound::showChart() const {
+void Noise::showChart() const {
     for  (int i = 0; i < measurements.size(); i++) {
         std::cout<<"ora "<<24 / measurements.size() * i<<": "<<measurements[i]<<std::endl;
     }
