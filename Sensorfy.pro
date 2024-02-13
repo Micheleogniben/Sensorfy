@@ -15,7 +15,6 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += sensorList.h \
-           gui/headers/mainwindow.h \
            sensors/headers/sensor.h \
            sensors/headers/sound.h \
            sensors/headers/temperature.h \
@@ -23,7 +22,6 @@ HEADERS += sensorList.h \
 FORMS += mainwindow.ui
 SOURCES += main.cpp \
            sensorList.cpp \
-           gui/cpp/mainwindow.cpp \
            sensors/cpp/sensor.cpp \
            sensors/cpp/sound.cpp \
            sensors/cpp/temperature.cpp \
