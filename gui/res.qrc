@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/noise.png</file>
+        <file>res/temp.png</file>
+        <file>res/wind.png</file>
+    </qresource>
+</RCC>
