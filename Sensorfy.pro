@@ -28,7 +28,6 @@ HEADERS += controller/controller.h \
            controller/parser.h \
            gui/addsensordialog.h \
            gui/deletesensordialog.h \
-           "gui/mainwindow copia.h" \
            gui/mainwindow.h \
            gui/sensorbutton.h \
            gui/sensordialog.h \
@@ -43,7 +42,6 @@ SOURCES += main.cpp \
            controller/parser.cpp \
            gui/addsensordialog.cpp \
            gui/deletesensordialog.cpp \
-           "gui/mainwindow copia.cpp" \
            gui/mainwindow.cpp \
            gui/sensorbutton.cpp \
            gui/sensordialog.cpp \
