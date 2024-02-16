@@ -1,24 +1,51 @@
-#include "sensorList.h"
+#include "sensorlist.h"
+#include "temperature.h"
+#include "noise.h"
+#include "wind.h"
+
+#include <algorithm>
 
 SensorList::SensorList() : head(nullptr), size(0) {}
 
-
 SensorList::SensorList(const SensorList& other) : head(nullptr), size(0) {
     Node* current = other.head;
+
     while (current != nullptr) {
-        Sensor* copiedSensor = new Sensor(*(current->data)); 
+        Sensor* copiedSensor = nullptr;
+
+        if (dynamic_cast<Noise*>(current->data))
+            copiedSensor = new Noise(*(dynamic_cast<Noise*>(current->data)));
+        else if (dynamic_cast<Wind*>(current->data))
+            copiedSensor = new Wind(*(dynamic_cast<Wind*>(current->data)));
+        else if (dynamic_cast<Temperature*>(current->data))
+            copiedSensor = new Temperature(*(dynamic_cast<Temperature*>(current->data)));
 
         addSensor(copiedSensor);
-
         current = current->next;
     }
 }
-
 
 SensorList::~SensorList() {
     while (!isEmpty())
         pop();
 }
+
+Sensor* SensorList::operator[](unsigned int i) const {
+    SensorList::Iterator it = begin();
+
+    for (unsigned int j = 0; j < i && it != end(); ++j, ++it) { };
+
+    return it != end() ? *it : nullptr;
+}
+
+Sensor* SensorList::get(unsigned int i) const {
+    SensorList::Iterator it = begin();
+
+    for (unsigned int j = 0; j < i && it != end(); ++j, ++it) { };
+
+    return it != end() ? *it : nullptr;
+}
+
 
 SensorList::Iterator::Iterator(SensorList::Node* start) : current(start) {}
 
@@ -45,21 +72,20 @@ SensorList::Iterator& SensorList::Iterator::operator++() {
     return *this;
 }
 
-Sensor& SensorList::Iterator::operator*() const { return *(current->data); }
+Sensor* SensorList::Iterator::operator*() {
+    if (current)
+        return current->data;
 
-Sensor* SensorList::Iterator::operator->() const { return current->data; }
+    return nullptr; // Nessun elemento rimanente
+}
 
-
-bool SensorList::deleteByName(std::string& name) {
+bool SensorList::deleteByName(std::string name) {
     Node* current = head;
     Node* previous = nullptr;
 
     while (current != nullptr) {
-        std::string currentName = current->data->getName();
-        std::transform(currentName.begin(), currentName.end(), currentName.begin(), ::tolower); // convertire il nome del sensore in minuscolo
-        if (currentName == name) {
+        if (current->data->getName() == name) {
             // Trovato il sensore da eliminare
-
             if (previous == nullptr) {
                 pop();
                 return true;
@@ -70,7 +96,6 @@ bool SensorList::deleteByName(std::string& name) {
 
             delete current;
             size--;
-
             return true;
         }
 
@@ -91,24 +116,17 @@ void SensorList::pop() {
     }
 }
 
+SensorList* SensorList::filterByName(const std::string& searchTerm) const {
+    SensorList* filteredList = new SensorList();
 
-Sensor* SensorList::findByName(std::string& name) const {
-    std::transform(name.begin(), name.end(), name.begin(), ::tolower); // convertire il nome del sensore in minuscolo
-
-    Node* current = head;
-    std::string currentName;
-    while (current != nullptr) {
-        currentName = current->data->getName();
-        std::transform(currentName.begin(), currentName.end(), currentName.begin(), ::tolower); // convertire il nome del sensore in minuscolo
-
-        if (currentName.compare(name) == 0) {
-            return current->data;
+    for (Iterator it = begin(); it != end(); ++it) {
+        if ((*it)->getName().find(searchTerm) != std::string::npos) {
+            filteredList->addSensor(*it);
         }
-        current = current->next;
     }
-    return nullptr; // sensore non trovato
-}
 
+    return filteredList;
+}
 
 Sensor* SensorList::getFront() const {
     if (!isEmpty())
@@ -122,8 +140,13 @@ bool SensorList::isEmpty() const {
     return size == 0;
 }
 
-bool SensorList::isNameTaken(std::string& name){
-    return findByName(name) != nullptr;
+bool SensorList::isNameTaken(const std::string& name) const {
+    for (Iterator it = begin(); it != end(); ++it) {
+        if ((*it)->getName() == name) {
+            return true;
+        }
+    }
+    return false;
 }
 
 unsigned int SensorList::getSize() const {
@@ -133,17 +156,18 @@ unsigned int SensorList::getSize() const {
 bool SensorList::addSensor(Sensor* data) {
     Node* newNode = new Node(data);
     newNode->next = nullptr;
-    
+
+    if (isNameTaken(data->getName()))
+        return false;
+
     if (isEmpty()) {
         head = newNode;
     } else {
-        if (!isNameTaken(newNode->data->getName())){
-            Node* lastNode = head;
-            while (lastNode->next != nullptr)
-                lastNode = lastNode->next;
+        Node* lastNode = head;
+        while (lastNode->next != nullptr)
+            lastNode = lastNode->next;
 
-            lastNode->next = newNode;
-        }
+        lastNode->next = newNode;
     }
 
     size++;

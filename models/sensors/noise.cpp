@@ -1,11 +1,16 @@
-#include "sound.h"
+#include "noise.h"
 #include <random>
+#include <algorithm>
 
-Sound::Sound(std::string name, std::string desc, std::string id) : Sensor(name, desc, id) { };
+Noise::Noise(std::string name, std::string desc, std::string id) : Sensor(name, desc, id, "noise") { }
+Noise::Noise(std::string name, std::string desc) : Sensor(name, desc, "noise") { }
 
-Sound::Sound(Sound& sensor) : Sensor(sensor), measurements(sensor.measurements) { };
+Noise::Noise(Noise& sensor) : Sensor(sensor), measurements(sensor.measurements) { }
 
-void Sound::generateData(unsigned short n) {
+void Noise::generateData(unsigned short n) {
+
+    measurements.clear();
+
     // Definisci un generatore di numeri casuali
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -40,13 +45,27 @@ void Sound::generateData(unsigned short n) {
         }
 
         // check per verificare che i db siano tra 0 e 100
-        this->measurements.push_back(measure);
+        this->measurements.push_back(std::min(measure, static_cast<unsigned int>(90)));
     }
 }
 
-#include <iostream>
-void Sound::showChart() const {
-    for  (int i = 0; i < measurements.size(); i++) {
-        std::cout<<"ora "<<24 / measurements.size() * i<<": "<<measurements[i]<<std::endl;
-    }
+void Noise::showChart(Controller* controllerPtr) const {
+    if (controllerPtr)
+        controllerPtr->generateChart(measurements);
+}
+
+const std::string Noise::toJson() const {
+    QJsonObject jsonObject;
+    jsonObject["type"] = "Noise";
+    jsonObject["name"] = QString::fromStdString(getName());
+    jsonObject["desc"] = QString::fromStdString(getDesc());
+    jsonObject["id"] = QString::fromStdString(getId());
+    // Aggiungi ulteriori campi specifici per Wind, come le misurazioni
+
+    QJsonDocument jsonDoc(jsonObject);
+    return jsonDoc.toJson(QJsonDocument::Compact).toStdString();
+}
+
+const unsigned short Noise::getNumMis() const {
+    return measurements.size();
 }

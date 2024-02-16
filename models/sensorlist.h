@@ -2,6 +2,7 @@
 #define SENSOR_LIST_H
 
 #include "sensor.h"
+#include <iostream>
 
 class SensorList {
 public:
@@ -10,14 +11,17 @@ public:
     ~SensorList();
 
     Sensor* getFront() const;
-    Sensor* findByName(std::string&) const;
 
     void pop();
-    bool deleteByName(std::string&);
+    bool deleteByName(std::string);
     bool addSensor(Sensor*);
 
     bool isEmpty() const;
-    bool isNameTaken(std::string&);
+    bool isNameTaken(const std::string&) const;
+    SensorList* filterByName(const std::string& searchTerm) const;
+
+    Sensor* operator[](unsigned int) const;
+    Sensor* get(unsigned int) const;
 
     unsigned int getSize() const;
 
@@ -44,14 +48,10 @@ class SensorList::Iterator {
 public:
     Iterator(Node* start);
 
-    Sensor* operator->() const;
-    Sensor& operator*() const;
-
     bool operator==(const Iterator& other) const;
     bool operator!=(const Iterator& other) const;
     Iterator& operator++();
-    Iterator& operator--();
-    void operator++(int);
+    Sensor* operator*();
 
 private:
     Node* current;
