@@ -1,0 +1,70 @@
+{
+    "sensors": [
+        {
+            "desc": "Livello di rumore: Sala musica",
+            "id": "j4Xa8lzyBU",
+            "name": "SalaMusica",
+            "type": "Noise"
+        },
+        {
+            "desc": "Temperatura: Cantina",
+            "id": "2YaIge9Ouo",
+            "name": "Cantina",
+            "type": "Temperature"
+        },
+        {
+            "desc": "Vento: Terrazza",
+            "id": "47uLc3JBrP",
+            "name": "Terrazza",
+            "type": "Wind"
+        },
+        {
+            "desc": "Rumore: Bar",
+            "id": "xa31sFxbne",
+            "name": "Bar",
+            "type": "Noise"
+        },
+        {
+            "desc": "Temperatura: Ufficio",
+            "id": "gueEiEHpUx",
+            "name": "Ufficio",
+            "type": "Temperature"
+        },
+        {
+            "desc": "Vento: Giardino",
+            "id": "E5jwKHafNu",
+            "name": "Giardino",
+            "type": "Wind"
+        },
+        {
+            "desc": "Rumore: Corridoio",
+            "id": "9NLEUyTF4L",
+            "name": "Corridoio",
+            "type": "Noise"
+        },
+        {
+            "desc": "Temperatura: Serra",
+            "id": "SljgSV7xIb",
+            "name": "Serra",
+            "type": "Temperature"
+        },
+        {
+            "desc": "Vento: Balcone",
+            "id": "0WwYHK5wcd",
+            "name": "Balcone",
+            "type": "Wind"
+        },
+        {
+            "desc": "Rumore: Parcheggio",
+            "id": "kBY6ciZ7GG",
+            "name": "Parcheggio",
+            "type": "Noise"
+        },
+        {
+            "desc": "Vento: Portico",
+            "id": "tjtncJs6EY",
+            "name": "Portico",
+            "type": "Wind"
+        }
+    ]
+}
